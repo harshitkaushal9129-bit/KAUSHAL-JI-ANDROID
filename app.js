@@ -1,3 +1,13 @@
+// Polished launch animation: reveal the app after its first render.
+(function(){
+ const splash=document.getElementById("splashScreen");
+ if(!splash)return;
+ const finish=()=>{splash.classList.add("is-leaving");setTimeout(()=>splash.remove(),800);};
+ window.addEventListener("load",()=>setTimeout(finish,2100),{once:true});
+ // Safety fallback in case a slow asset prevents the load event.
+ setTimeout(finish,4500);
+})();
+
 const $ = s => document.querySelector(s);
 const now = new Date();
 let shownYear = now.getFullYear(), shownMonth = now.getMonth();
@@ -46,12 +56,13 @@ document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click"
   if(action==="theme")toggleTheme();
   if(action==="share")shareApp();
   if(action==="install")installApp();
-  if(action==="today"){selected=new Date();shownYear=selected.getFullYear();shownMonth=selected.getMonth();showView("calendar");renderCalendar();renderSelected();}
+  if(action==="today"){selected=new Date();shownYear=selected.getFullYear();shownMonth=selected.getMonth();showView("calendar");renderCalendar();renderSelected();renderUpcoming();}
 }));
 
 function dateKey(y,m,d){return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;}
 function getEvents(y,m,d){return festivals.filter(f=>f.date===dateKey(y,m,d));}
 function formatDate(d){return d.toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});}
+
 function renderCalendar(){
   $("#monthTitle").textContent=new Date(shownYear,shownMonth,1).toLocaleDateString("en-IN",{month:"long",year:"numeric"});
   $("#heroYear").textContent=shownYear;
@@ -68,10 +79,11 @@ function renderCalendar(){
     const date=new Date(y,m,d), ev=getEvents(y,m,d), key=dateKey(y,m,d);
     const btn=document.createElement("button");btn.className="day"+(muted?" muted-day":"")+(key===dateKey(now.getFullYear(),now.getMonth(),now.getDate())?" today":"")+(key===dateKey(selected.getFullYear(),selected.getMonth(),selected.getDate())?" selected":"");
     btn.textContent=d;if(ev.length){const dot=document.createElement("i");dot.className="event-dot";btn.append(dot);}
-    btn.addEventListener("click",()=>{selected=date;shownYear=y;shownMonth=m;renderCalendar();renderSelected();});
+    btn.addEventListener("click",()=>{selected=date;shownYear=y;shownMonth=m;renderCalendar();renderSelected();renderUpcoming();});
     grid.append(btn);
   }
 }
+
 function renderSelected(){
   $("#selectedDate").textContent=formatDate(selected);
   const noteKey="khushi-note-"+dateKey(selected.getFullYear(),selected.getMonth(),selected.getDate());
@@ -82,17 +94,36 @@ function renderSelected(){
   if(!ev.length){box.innerHTML='<p class="muted">No festival listed for this date. Enjoy your day! ✨</p>';return;}
   ev.forEach(f=>{const div=document.createElement("div");div.className="event";div.innerHTML=`<b>${f.emoji||"🎉"} ${escapeHtml(f.name)}</b><small>${escapeHtml(f.type||"Festival")}${f.note?" · "+escapeHtml(f.note):""}</small>`;box.append(div);});
 }
+
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+
+// Upgraded to show festivals strictly for the currently active/switched month & year
 function renderUpcoming(){
- const today=dateKey(now.getFullYear(),now.getMonth(),now.getDate());
  const term=($("#festivalSearch")?.value||"").trim().toLowerCase();
- const upcoming=festivals.filter(f=>f.date>=today && (!term||`${f.name} ${f.type||""}`.toLowerCase().includes(term))).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,12);
+ const targetMonthStr = `${shownYear}-${String(shownMonth+1).padStart(2,"0")}`;
+ 
+ const monthFestivals=festivals.filter(f=>{
+   const matchesMonth = f.date.startsWith(targetMonthStr);
+   const matchesSearch = !term || `${f.name} ${f.type||""}`.toLowerCase().includes(term);
+   return matchesMonth && matchesSearch;
+ }).sort((a,b)=>a.date.localeCompare(b.date));
+
  const box=$("#upcomingList");box.innerHTML="";
- if(!upcoming.length){box.innerHTML='<p class="muted">No upcoming festivals in festival.json yet.</p>';return;}
- upcoming.forEach(f=>{const d=new Date(f.date+"T00:00:00");const el=document.createElement("div");el.className="upcoming-card";el.innerHTML=`<b>${f.emoji||"🎉"} ${escapeHtml(f.name)}</b><small>${d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}</small>`;box.append(el);});
+ if(!monthFestivals.length){
+   box.innerHTML=`<p class="muted">No festivals listed for ${new Date(shownYear, shownMonth, 1).toLocaleDateString("en-IN",{month:"long", year:"numeric"})}.</p>`;
+   return;
+ }
+ monthFestivals.forEach(f=>{
+   const d=new Date(f.date+"T00:00:00");
+   const el=document.createElement("div");
+   el.className="upcoming-card";
+   el.innerHTML=`<b>${f.emoji||"🎉"} ${escapeHtml(f.name)}</b><small>${d.toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"})}</small>`;
+   box.append(el);
+ });
 }
-$("#prevMonth").onclick=()=>{shownMonth--;if(shownMonth<0){shownMonth=11;shownYear--;}renderCalendar();};
-$("#nextMonth").onclick=()=>{shownMonth++;if(shownMonth>11){shownMonth=0;shownYear++;}renderCalendar();};
+
+$("#prevMonth").onclick=()=>{shownMonth--;if(shownMonth<0){shownMonth=11;shownYear--;}renderCalendar();renderUpcoming();};
+$("#nextMonth").onclick=()=>{shownMonth++;if(shownMonth>11){shownMonth=0;shownYear++;}renderCalendar();renderUpcoming();};
 $("#festivalSearch").addEventListener("input",renderUpcoming);
 
 $("#saveNote").addEventListener("click",()=>{
