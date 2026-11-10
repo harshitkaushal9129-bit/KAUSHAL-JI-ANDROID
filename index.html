@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#090b25">
   <meta name="description" content="Khushi Calendar - Indian festivals, calendar, clock and calculator">
-  <title>modern Calendar</title>
+  <title>Khushi Calendar</title>
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="khushi.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Animated Neon Splash Screen Added Here -->
+  <!-- Animated Neon Splash Screen -->
   <div id="splashScreen" class="splash-screen" aria-label="Khushi Calendar loading">
     <div class="splash-orbit orbit-one"></div>
     <div class="splash-orbit orbit-two"></div>
@@ -106,8 +106,55 @@
       </div>
     </section>
 
-    <section id="appinfoView" class="view hidden"><div class="info-card panel"><img src="khushi.svg" alt="Khushi Calendar logo"><span class="eyebrow">ABOUT THE APP</span><h1>Khushi Calendar</h1><p>A colourful calendar with Indian festival reminders, a neon calculator and analog / digital clock.</p><div class="info-row"><span>Version</span><b>1.0.0</b></div><div class="info-row"><span>Festival source</span><b>festival.json</b></div><div class="info-row"><span>App type</span><b>Installable PWA</b></div><div class="info-row"><span>Offline support</span><b>After first load</b></div></div></section>
-    <section id="developerView" class="view hidden"><div class="info-card panel"><span class="eyebrow">MADE WITH ❤️</span><h1>Developer Info</h1><p>Khushi Calendar project</p><div class="info-row"><span>Developer</span><b>Your Name</b></div><div class="info-row"><span>App</span><b>Khushi Calendar</b></div><p class="muted">Edit this section in <code>index.html</code> and replace “Your Name” with your developer name.</p></div></section>
+    <!-- Upgraded App Info View with Social Handles & QR Support -->
+    <section id="appinfoView" class="view hidden">
+      <div class="info-card panel">
+        <img src="khushi.svg" alt="Khushi Calendar logo">
+        <span class="eyebrow">ABOUT THE APP</span>
+        <h1>Khushi Calendar</h1>
+        <p>A colourful calendar with Indian festival reminders, a neon calculator and analog / digital clock.</p>
+        
+        <div class="info-row"><span>Version</span><b>1.0.0</b></div>
+        <div class="info-row"><span>Festival source</span><b>festival.json</b></div>
+        <div class="info-row"><span>App type</span><b>Installable PWA</b></div>
+        
+        <div style="margin: 20px 0 10px; text-align: left;">
+          <span class="eyebrow" style="display:block; margin-bottom: 10px;">CONNECT & SUPPORT</span>
+          
+          <div class="info-row">
+            <span>💬 WhatsApp</span>
+            <a href="https://wa.me/919129191898" target="_blank" style="color: var(--cyan); text-decoration: none;">+91 91291 91898</a>
+          </div>
+          <div class="info-row">
+            <span>📞 Direct Call</span>
+            <a href="tel:9129191898" style="color: var(--cyan); text-decoration: none;">9129191898</a>
+          </div>
+          <div class="info-row">
+            <span>▶️ YouTube</span>
+            <a href="https://youtube.com/@devil_king.01r?si=3QkN826bob8v7rWs" target="_blank" style="color: var(--pink); text-decoration: none;">@devil_king.01r</a>
+          </div>
+          <div class="info-row">
+            <span>📸 Instagram</span>
+            <a href="https://www.instagram.com/the_devil_world_01?cplk=MWxmbjRseW8wMmxzaw==" target="_blank" style="color: var(--purple); text-decoration: none;">the_devil_world_01</a>
+          </div>
+          <div class="info-row">
+            <span>🪲 QR / UPI Support</span>
+            <b style="color: var(--cyan); font-size: 11px; word-break: break-all;">mandavikaushal913@okaxis</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="developerView" class="view hidden">
+      <div class="info-card panel">
+        <span class="eyebrow">MADE WITH ❤️</span>
+        <h1>Developer Info</h1>
+        <p>Khushi Calendar project</p>
+        <div class="info-row"><span>Developer</span><b>Harshit Kaushal</b></div>
+        <div class="info-row"><span>Brand</span><b>kaushalji</b></div>
+        <div class="info-row"><span>Contact</span><a href="https://wa.me/919129191898" target="_blank" style="color:var(--cyan);text-decoration:none;">9129191898</a></div>
+      </div>
+    </section>
   </main>
   <footer>Made for brighter days <span>✦</span> Khushi Calendar</footer>
   <script src="app.js"></script>
