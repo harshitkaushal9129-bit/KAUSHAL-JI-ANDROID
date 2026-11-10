@@ -1,0 +1,19 @@
+{
+  "name": "Khushi Calendar",
+  "short_name": "Khushi",
+  "description": "Khushi Calendar: Indian festivals, searchable calendar, personal notes, calculator and neon clock",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080a20",
+  "theme_color": "#090b25",
+  "icons": [
+    {
+      "src": "khushi.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

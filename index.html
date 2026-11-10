@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b25">
+  <meta name="description" content="Khushi Calendar - Indian festivals, calendar, clock and calculator">
+  <title>Khushi Calendar</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="khushi.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient a1"></div><div class="ambient a2"></div>
+  <header class="topbar">
+    <div class="brand"><img src="khushi.svg" alt="Khushi logo"><div><b>Khushi Calendar</b><small>Every day, a little celebration ✨</small></div></div>
+    <div class="top-actions"><button class="theme-quick" id="themeQuick" aria-label="Toggle theme">☀️</button><button class="dots" id="menuBtn" aria-label="Menu">⋮</button></div>
+    <nav class="menu hidden" id="menu">
+      <button data-view="calendar">📅 Calendar</button>
+      <button data-action="today">🎯 Go to Today</button>
+      <button data-view="calculator">🧮 Calculator</button>
+      <button data-view="clock">🕒 Analog / Digital Clock</button>
+      <hr>
+      <button data-action="theme">🌗 Dark / Light Mode</button>
+      <button data-action="share">📤 Share App</button>
+      <button data-action="install" id="installMenuItem" class="hidden">📲 Install App</button>
+      <hr>
+      <button data-view="appinfo">ℹ️ App Info</button>
+      <button data-view="developer">👨‍💻 Developer Info</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="calendarView" class="view">
+      <div class="hero panel">
+        <div><span class="eyebrow">YOUR HAPPY DAYS</span><h1>Calendar <span id="heroYear">2026</span></h1><p>Plan your days. Celebrate every moment.</p></div>
+        <div class="today-chip"><small>TODAY</small><strong id="todayText">--</strong></div>
+      </div>
+      <div class="calendar-layout">
+        <section class="panel calendar-panel">
+          <div class="month-head">
+            <button class="round" id="prevMonth" aria-label="Previous month">‹</button>
+            <div><h2 id="monthTitle">Month</h2><small id="monthSub">Choose a date</small></div>
+            <button class="round" id="nextMonth" aria-label="Next month">›</button>
+          </div>
+          <div class="weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+          <div class="legend"><span><i class="dot today-dot"></i> Today</span><span><i class="dot festival-dot"></i> Festival</span><span><i class="dot selected-dot"></i> Selected</span></div>
+        </section>
+        <aside class="panel day-panel">
+          <span class="eyebrow">DAY DETAILS</span><h2 id="selectedDate">Select a date</h2>
+          <div id="dayEvents" class="event-list"><p class="muted">Select a date to see festivals.</p></div>
+          <label class="note-label" for="dayNote">📝 My note for this day</label>
+          <textarea id="dayNote" class="day-note" rows="3" placeholder="Add a reminder or personal note..."></textarea>
+          <button id="saveNote" class="save-note">Save Note</button><span id="noteStatus" class="note-status"></span>
+          <div class="mini-note">🌼 Festival data loads from <code>festival.json</code></div>
+        </aside>
+      </div>
+      <section class="panel upcoming">
+        <div class="section-heading"><div><span class="eyebrow">MARK YOUR JOY</span><h2>Upcoming festivals</h2></div><span class="pill">India 🇮🇳</span></div>
+        <input id="festivalSearch" class="festival-search" type="search" placeholder="🔎 Search festivals...">
+        <div id="upcomingList" class="upcoming-list"></div>
+      </section>
+    </section>
+
+    <section id="calculatorView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">QUICK TOOL</span><h1>Neon Calculator</h1>
+        <div class="calculator">
+          <div class="calc-screen"><div id="calcHistory"></div><output id="calcDisplay">0</output></div>
+          <div class="calc-keys">
+            <button class="key utility" data-key="AC">AC</button><button class="key utility" data-key="DEL">⌫</button><button class="key utility" data-key="%">%</button><button class="key operator" data-key="÷">÷</button>
+            <button class="key" data-key="7">7</button><button class="key" data-key="8">8</button><button class="key" data-key="9">9</button><button class="key operator" data-key="×">×</button>
+            <button class="key" data-key="4">4</button><button class="key" data-key="5">5</button><button class="key" data-key="6">6</button><button class="key operator" data-key="-">−</button>
+            <button class="key" data-key="1">1</button><button class="key" data-key="2">2</button><button class="key" data-key="3">3</button><button class="key operator" data-key="+">+</button>
+            <button class="key span2" data-key="0">0</button><button class="key" data-key=".">.</button><button class="key equal" data-key="=">=</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clockView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">TIME IN COLOUR</span><h1>Neon Clock</h1>
+        <div class="clock-tabs"><button class="active" data-clock="analog">Analog</button><button data-clock="digital">Digital</button></div>
+        <div id="analogClock" class="analog-clock"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div><div class="clock-pin"></div>
+          <span class="num n12">12</span><span class="num n3">3</span><span class="num n6">6</span><span class="num n9">9</span>
+        </div>
+        <div id="digitalClock" class="digital-clock hidden"><strong id="digitalTime">00:00:00</strong><span id="digitalDate">---</span></div>
+        <p class="clock-caption">Live local time · India Standard Time</p>
+      </div>
+    </section>
+
+    <section id="appinfoView" class="view hidden"><div class="info-card panel"><img src="khushi.svg" alt="Khushi Calendar logo"><span class="eyebrow">ABOUT THE APP</span><h1>Khushi Calendar</h1><p>A colourful calendar with Indian festival reminders, a neon calculator and analog / digital clock.</p><div class="info-row"><span>Version</span><b>1.0.0</b></div><div class="info-row"><span>Festival source</span><b>festival.json</b></div><div class="info-row"><span>App type</span><b>Installable PWA</b></div><div class="info-row"><span>Offline support</span><b>After first load</b></div></div></section>
+    <section id="developerView" class="view hidden"><div class="info-card panel"><span class="eyebrow">MADE WITH ❤️</span><h1>Developer Info</h1><p>Khushi Calendar project</p><div class="info-row"><span>Developer</span><b>Your Name</b></div><div class="info-row"><span>App</span><b>Khushi Calendar</b></div><p class="muted">Edit this section in <code>index.html</code> and replace “Your Name” with your developer name.</p></div></section>
+  </main>
+  <footer>Made for brighter days <span>✦</span> Khushi Calendar</footer>
+  <script src="app.js"></script>
+</body>
+</html>

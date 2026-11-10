@@ -1,0 +1,88 @@
+[
+  {
+    "date": "2026-11-14",
+    "name": "Children's Day",
+    "emoji": "🎈",
+    "type": "National observance",
+    "note": "India"
+  },
+  {
+    "date": "2026-11-24",
+    "name": "Guru Tegh Bahadur Martyrdom Day",
+    "emoji": "🙏",
+    "type": "Observance",
+    "note": "Check local holiday calendar"
+  },
+  {
+    "date": "2026-12-25",
+    "name": "Christmas",
+    "emoji": "🎄",
+    "type": "Festival"
+  },
+  {
+    "date": "2027-01-01",
+    "name": "New Year's Day",
+    "emoji": "🎉",
+    "type": "Celebration"
+  },
+  {
+    "date": "2027-01-14",
+    "name": "Makar Sankranti",
+    "emoji": "🪁",
+    "type": "Festival",
+    "note": "Date can vary by regional calendar"
+  },
+  {
+    "date": "2027-01-26",
+    "name": "Republic Day",
+    "emoji": "🇮🇳",
+    "type": "National holiday"
+  },
+  {
+    "date": "2027-03-06",
+    "name": "Maha Shivaratri",
+    "emoji": "🔱",
+    "type": "Hindu festival",
+    "note": "Indicative date; verify local panchang"
+  },
+  {
+    "date": "2027-03-10",
+    "name": "Eid al-Fitr",
+    "emoji": "🌙",
+    "type": "Islamic festival",
+    "note": "Date depends on moon sighting"
+  },
+  {
+    "date": "2027-03-22",
+    "name": "Holi",
+    "emoji": "🎨",
+    "type": "Hindu festival",
+    "note": "Indicative date; verify local panchang"
+  },
+  {
+    "date": "2027-04-14",
+    "name": "Dr. B. R. Ambedkar Jayanti",
+    "emoji": "📘",
+    "type": "National observance"
+  },
+  {
+    "date": "2027-08-15",
+    "name": "Independence Day",
+    "emoji": "🇮🇳",
+    "type": "National holiday"
+  },
+  {
+    "date": "2027-10-08",
+    "name": "Dussehra",
+    "emoji": "🏹",
+    "type": "Hindu festival",
+    "note": "Indicative date; verify local panchang"
+  },
+  {
+    "date": "2027-10-29",
+    "name": "Diwali",
+    "emoji": "🪔",
+    "type": "Hindu festival",
+    "note": "Indicative date; verify local panchang"
+  }
+]
