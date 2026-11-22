@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b25">
+  <meta name="description" content="KAUSHALJI Universe - calendar, games and everyday tools">
+  <title>KAUSHALJI Universe</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="kaushalji.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="dragon-scene" aria-hidden="true">
+    <div class="dragon-glow"></div>
+    <svg class="dragon-art" viewBox="0 0 700 420" role="img" aria-label="">
+      <defs>
+        <linearGradient id="dragonMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9b8d8"/><stop offset=".45" stop-color="#35466f"/><stop offset="1" stop-color="#11172d"/></linearGradient>
+        <linearGradient id="fireGrad" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ffed8a"/><stop offset=".35" stop-color="#ff9b24"/><stop offset="1" stop-color="#ff315c" stop-opacity="0"/></linearGradient>
+        <filter id="fireBlur"><feGaussianBlur stdDeviation="7"/></filter>
+      </defs>
+      <g class="dragon-body" fill="url(#dragonMetal)" stroke="#9aadd7" stroke-width="3" stroke-linejoin="round">
+        <path d="M390 230 Q310 190 260 95 Q345 125 395 177 Q430 100 525 65 Q480 160 458 218 Q525 190 590 210 Q525 265 456 270 L420 350 380 350 395 270 Q330 300 250 270 Q305 245 390 230Z"/>
+        <path d="M395 178 Q420 115 485 105 L520 145 485 180 452 205Z"/>
+        <path d="M485 116 L525 76 515 132 M465 125 L475 70 492 121" fill="#263457"/>
+        <path d="M508 159 L570 177 520 192Z" fill="#1a2441"/>
+        <path d="M535 154 L548 157" stroke="#ff4d62" stroke-width="8" stroke-linecap="round"/>
+        <path d="M385 245 Q330 325 285 350 L335 345 400 280 M440 255 Q475 315 520 335 L475 342 420 285" fill="#202d4e"/>
+        <path d="M260 95 Q225 60 175 52 Q220 112 275 150" fill="#253454"/>
+        <path d="M405 180 Q350 130 320 75 Q395 95 435 150" fill="#2c3d63"/>
+      </g>
+      <g class="dragon-fire">
+        <path d="M550 177 Q620 130 690 155 Q645 180 690 192 Q620 215 550 184Z" fill="url(#fireGrad)" filter="url(#fireBlur)"/>
+        <path d="M548 177 Q615 150 682 162 Q630 180 678 188 Q610 196 548 181Z" fill="url(#fireGrad)"/>
+      </g>
+    </svg>
+    <div class="fire-particles"></div>
+  </div>
+
+
+  <!-- Animated Neon Splash Screen -->
+  <div id="splashScreen" class="splash-screen" aria-label="kaushalji Calendar loading">
+    <div class="splash-orbit orbit-one"></div>
+    <div class="splash-orbit orbit-two"></div>
+    <div class="splash-orbit orbit-three"></div>
+    <div class="splash-logo-wrap">
+      <div class="logo-aura"></div>
+      <img class="splash-logo" src="kaushalji.svg" alt="kaushalji Calendar logo">
+      <div class="logo-spark spark-one">✦</div><div class="logo-spark spark-two">✧</div>
+    </div>
+    <div class="splash-title">kaushalji<span>.</span></div>
+    <div class="splash-subtitle">GAMES • TOOLS • EVERYDAY</div>
+    <div class="splash-loader"><i></i></div>
+    <div class="splash-loading-text">Your universe is loading...</div>
+  </div>
+
+  <div class="ambient a1"></div><div class="ambient a2"></div>
+  <header class="topbar">
+    <div class="brand"><img src="kaushalji.svg" alt="kaushalji logo"><div><b>KAUSHALJI Universe</b><small>Every day, a little celebration ✨</small></div></div>
+    <div class="top-actions"><button class="theme-quick" id="themeQuick" aria-label="Toggle theme">☀️</button><button class="dots" id="menuBtn" aria-label="Menu">⋮</button></div>
+    <nav class="menu hidden" id="menu">
+      <button data-view="calendar">📅 Calendar</button>
+      <button data-action="today">🎯 Go to Today</button>
+      <button data-view="calculator">🧮 Calculator</button>
+      <button data-view="clock">🕒 Analog / Digital Clock</button>
+      <button data-view="games">🎮 Kaushalji Game Arcade</button>
+      <button data-view="planner">✅ Daily Planner & To-do</button>
+      <button data-view="stopwatch">⏱️ Stopwatch & Timer</button>
+      <button data-view="converter">📐 Unit Converter</button>
+      <button data-view="quiz">🧠 GK Quiz</button>
+      <button data-view="colorstudio">🎨 Color Studio</button>
+      <hr>
+      <button data-action="theme">🌗 Dark / Light Mode</button>
+      <button data-action="share">📤 Share App</button>
+      <button data-action="install" id="installMenuItem" class="hidden">📲 Install App</button>
+      <hr>
+      <button data-view="appinfo">ℹ️ App Info</button>
+      <button data-view="developer">👨‍💻 Developer Info</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="calendarView" class="view">
+      <div class="hero panel">
+        <div><span class="eyebrow">YOUR HAPPY DAYS</span><h1>Calendar <span id="heroYear">2026</span></h1><p>Plan your days. Celebrate every moment.</p></div>
+        <div class="today-chip"><small>TODAY</small><strong id="todayText">--</strong></div>
+      </div>
+      <div class="calendar-layout">
+        <section class="panel calendar-panel">
+          <div class="month-head">
+            <button class="round" id="prevMonth" aria-label="Previous month">‹</button>
+            <div><h2 id="monthTitle">Month</h2><small id="monthSub">Choose a date</small></div>
+            <button class="round" id="nextMonth" aria-label="Next month">›</button>
+          </div>
+          <div class="weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+          <div class="legend"><span><i class="dot today-dot"></i> Today</span><span><i class="dot festival-dot"></i> Festival</span><span><i class="dot selected-dot"></i> Selected</span></div>
+        </section>
+        <aside class="panel day-panel">
+          <span class="eyebrow">DAY DETAILS</span><h2 id="selectedDate">Select a date</h2>
+          <div id="dayEvents" class="event-list"><p class="muted">Select a date to see festivals.</p></div>
+          <label class="note-label" for="dayNote">📝 My note for this day</label>
+          <textarea id="dayNote" class="day-note" rows="3" placeholder="Add a reminder or personal note..."></textarea>
+          <button id="saveNote" class="save-note">Save Note</button><span id="noteStatus" class="note-status"></span>
+          <div class="mini-note">🌼 Festival data loads from <code>festival.json</code></div>
+        </aside>
+      </div>
+      <section class="panel upcoming">
+        <div class="section-heading"><div><span class="eyebrow">MARK YOUR JOY</span><h2>Upcoming festivals</h2></div><span class="pill">India 🇮🇳</span></div>
+        <input id="festivalSearch" class="festival-search" type="search" placeholder="🔎 Search festivals...">
+        <div id="upcomingList" class="upcoming-list"></div>
+      </section>
+    </section>
+
+    <section id="calculatorView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">QUICK TOOL</span><h1>Neon Calculator</h1>
+        <div class="calculator">
+          <div class="calc-screen"><div id="calcHistory"></div><output id="calcDisplay">0</output></div>
+          <div class="calc-keys">
+            <button class="key utility" data-key="AC">AC</button><button class="key utility" data-key="DEL">⌫</button><button class="key utility" data-key="%">%</button><button class="key operator" data-key="÷">÷</button>
+            <button class="key" data-key="7">7</button><button class="key" data-key="8">8</button><button class="key" data-key="9">9</button><button class="key operator" data-key="×">×</button>
+            <button class="key" data-key="4">4</button><button class="key" data-key="5">5</button><button class="key" data-key="6">6</button><button class="key operator" data-key="-">−</button>
+            <button class="key" data-key="1">1</button><button class="key" data-key="2">2</button><button class="key" data-key="3">3</button><button class="key operator" data-key="+">+</button>
+            <button class="key span2" data-key="0">0</button><button class="key" data-key=".">.</button><button class="key equal" data-key="=">=</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gamesView" class="view hidden">
+      <div class="hero panel game-hero">
+        <div><span class="eyebrow">KAUSHALJI ARCADE</span><h1>Game <span>Universe</span></h1><p>Six mini-games, one arcade. Choose a challenge and beat your best score.</p></div>
+        <div class="arcade-emblem">🎮</div>
+      </div>
+      <div class="game-grid">
+        <button class="game-card" data-game="tictactoe"><span>⭕</span><b>Tic Tac Toe</b><small>Play against a smart computer</small></button>
+        <button class="game-card" data-game="memory"><span>🧠</span><b>Memory Match</b><small>Find all matching pairs</small></button>
+        <button class="game-card" data-game="snake"><span>🐍</span><b>Neon Snake</b><small>Collect points and grow</small></button>
+        <button class="game-card" data-game="rps"><span>✊</span><b>Rock Paper Scissors</b><small>Challenge the computer</small></button>
+        <button class="game-card" data-game="guess"><span>🔢</span><b>Number Guess</b><small>Find the secret number</small></button>
+        <button class="game-card" data-game="reaction"><span>⚡</span><b>Reaction Test</b><small>Test your response time</small></button>
+      </div>
+      <section class="panel game-stage">
+        <div class="game-stage-head"><div><span class="eyebrow">NOW PLAYING</span><h2 id="gameTitle">Choose a game above</h2></div><button id="gameReset" class="save-note">↻ Restart</button></div>
+        <div id="gameArea" class="game-area"><p class="muted">Select any game card to begin. Your arcade is ready!</p></div>
+      </section>
+    </section>
+
+    <section id="plannerView" class="view hidden">
+      <div class="hero panel"><div><span class="eyebrow">GET THINGS DONE</span><h1>Daily <span>Planner</span></h1><p>Your tasks stay saved on this device.</p></div><div class="arcade-emblem">✅</div></div>
+      <section class="panel tool-wrap planner-wrap"><h2>My To-do List</h2><form id="taskForm" class="task-form"><input id="taskInput" maxlength="120" placeholder="Add a task for today…" required><button class="save-note">＋ Add Task</button></form><div class="task-toolbar"><span id="taskCount">0 tasks</span><button id="clearDone" class="save-note">Clear completed</button></div><div id="taskList" class="task-list"><p class="muted">No tasks yet. Add your first task above.</p></div></section>
+    </section>
+
+    <section id="stopwatchView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">TIME YOUR MOMENTS</span><h1>Stopwatch <span>& Timer</span></h1>
+        <div class="time-display" id="stopwatchDisplay">00:00.0</div><div class="tool-actions"><button class="save-note" id="swStart">Start</button><button class="save-note" id="swLap">Lap</button><button class="save-note" id="swReset">Reset</button></div><ol id="lapList" class="lap-list"></ol>
+        <hr class="tool-divider"><h2>Countdown Timer</h2><div class="timer-inputs"><input id="timerMinutes" type="number" min="0" max="999" value="1" aria-label="Minutes"><span>min</span><input id="timerSeconds" type="number" min="0" max="59" value="0" aria-label="Seconds"><span>sec</span></div><div class="time-display timer-display" id="timerDisplay">01:00</div><div class="tool-actions"><button class="save-note" id="timerStart">Start Timer</button><button class="save-note" id="timerReset">Reset</button></div><p id="timerStatus" class="muted"></p>
+      </div>
+    </section>
+
+    <section id="converterView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">EVERYDAY MATH TOOLS</span><h1>Unit <span>Converter</span></h1><label class="converter-label" for="convertType">Conversion type</label><select id="convertType" class="converter-select"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option></select><div class="convert-grid"><label>From<input id="convertValue" type="number" value="1" step="any"></label><label>Unit<select id="convertFrom"></select></label><label>To<select id="convertTo"></select></label></div><div class="convert-result"><small>RESULT</small><strong id="convertResult">100 cm</strong></div><p class="muted">Conversions are calculated instantly on your device.</p></div>
+    </section>
+
+    <section id="clockView" class="view hidden">
+      <div class="tool-wrap panel"><span class="eyebrow">TIME IN COLOUR</span><h1>Neon Clock</h1>
+        <div class="clock-tabs"><button class="active" data-clock="analog">Analog</button><button data-clock="digital">Digital</button></div>
+        <div id="analogClock" class="analog-clock"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div><div class="clock-pin"></div>
+          <span class="num n12">12</span><span class="num n3">3</span><span class="num n6">6</span><span class="num n9">9</span>
+        </div>
+        <div id="digitalClock" class="digital-clock hidden"><strong id="digitalTime">00:00:00</strong><span id="digitalDate">---</span></div>
+        <p class="clock-caption">Live local time · India Standard Time</p>
+      </div>
+    </section>
+
+    <!-- Upgraded App Info View with Social Handles & QR Support -->
+
+    <section id="quizView" class="view hidden">
+      <div class="hero panel"><div><span class="eyebrow">OFFLINE LEARNING</span><h1>Knowledge <span>Challenge</span></h1><p>Quick general-knowledge quiz. No internet required.</p></div><div class="arcade-emblem">🧠</div></div>
+      <section class="panel tool-wrap quiz-wrap">
+        <div class="quiz-meta"><span id="quizProgress">Question 1 / 10</span><span id="quizScore">Score: 0</span></div>
+        <div class="quiz-progress"><i id="quizProgressBar"></i></div>
+        <h2 id="quizQuestion">Ready to test your knowledge?</h2>
+        <div id="quizOptions" class="quiz-options"></div>
+        <p id="quizFeedback" class="game-hint">Choose the correct answer to continue.</p>
+        <button id="quizNext" class="save-note" disabled>Next Question →</button>
+        <button id="quizRestart" class="save-note secondary-action">↻ Restart Quiz</button>
+      </section>
+    </section>
+
+    <section id="colorstudioView" class="view hidden">
+      <div class="hero panel"><div><span class="eyebrow">CREATIVE WORKSPACE</span><h1>Color <span>Studio</span></h1><p>Generate palettes, copy HEX codes and preview gradients.</p></div><div class="arcade-emblem">🎨</div></div>
+      <section class="panel tool-wrap color-wrap">
+        <div id="palettePreview" class="palette-preview"></div>
+        <div id="paletteCodes" class="palette-codes"></div>
+        <div class="tool-actions"><button id="newPalette" class="save-note">✨ Generate Palette</button><button id="copyPalette" class="save-note secondary-action">📋 Copy All Codes</button></div>
+        <h3>Gradient Preview</h3><div id="gradientPreview" class="gradient-preview"></div>
+        <p class="muted">Tap any color tile to copy its HEX value.</p>
+      </section>
+    </section>
+
+    <section id="appinfoView" class="view hidden">
+      <div class="info-card panel">
+        <img src="kaushalji.svg" alt="kaushalji Calendar logo">
+        <span class="eyebrow">ABOUT THE APP</span>
+        <h1>kaushalji Calendar</h1>
+        <p>Indian festival calendar, personal notes, neon calculator, live clock and six built-in arcade games.</p>
+        
+        <div class="info-row"><span>Version</span><b>1.0.0</b></div>
+        <div class="info-row"><span>Festival source</span><b>festival.json</b></div>
+        <div class="info-row"><span>App type</span><b>Installable PWA</b></div>
+        
+        <div style="margin: 20px 0 10px; text-align: left;">
+          <span class="eyebrow" style="display:block; margin-bottom: 10px;">CONNECT & SUPPORT</span>
+          
+          <div class="info-row">
+            <span>💬 WhatsApp</span>
+            <a href="https://wa.me/919129191898" target="_blank" style="color: var(--cyan); text-decoration: none;">+91 91291 91898</a>
+          </div>
+          <div class="info-row">
+            <span>📞 Direct Call</span>
+            <a href="tel:9129191898" style="color: var(--cyan); text-decoration: none;">9129191898</a>
+          </div>
+          <div class="info-row">
+            <span>▶️ YouTube</span>
+            <a href="https://youtube.com/@devil_king.01r?si=3QkN826bob8v7rWs" target="_blank" style="color: var(--pink); text-decoration: none;">@devil_king.01r</a>
+          </div>
+          <div class="info-row">
+            <span>📸 Instagram</span>
+            <a href="https://www.instagram.com/the_devil_world_01?cplk=MWxmbjRseW8wMmxzaw==" target="_blank" style="color: var(--purple); text-decoration: none;">the_devil_world_01</a>
+          </div>
+          <div class="info-row">
+            <span>🪲 QR / UPI Support</span>
+            <b style="color: var(--cyan); font-size: 11px; word-break: break-all;">mandavikaushal913@okaxis</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="developerView" class="view hidden">
+      <div class="info-card panel">
+        <span class="eyebrow">MADE WITH ❤️</span>
+        <h1>Developer Info</h1>
+        <p>kaushalji Calendar project</p>
+        <div class="info-row"><span>Developer</span><b>Harshit Kaushal</b></div>
+        <div class="info-row"><span>Brand</span><b>kaushalji</b></div>
+        <div class="info-row"><span>Contact</span><a href="https://wa.me/919129191898" target="_blank" style="color:var(--cyan);text-decoration:none;">9129191898</a></div>
+      </div>
+    </section>
+  </main>
+  <footer>POWERED BY <span>✦</span> KAUSHALJI UNIVERSE</footer>
+  <script src="app.js"></script>
+</body>
+</html>
